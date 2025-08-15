@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Font Awesome CDN para ícones de redes sociais -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <title>Willian | Estratégia & Crescimento</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Popup Flutuante do Evento -->
+  <div id="evento-popup" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(44,62,80,0.45);display:none;align-items:center;justify-content:center;z-index:9999;">
+    <div style="background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(44,62,80,0.18);padding:40px 32px;max-width:400px;width:90%;text-align:center;position:relative;">
+      <button id="fechar-popup" style="position:absolute;top:16px;right:16px;background:#eee;border:none;border-radius:50%;width:32px;height:32px;font-size:1.3rem;cursor:pointer;">&times;</button>
+      <img src="assets/img/institutowicartest.png" alt="Logo Evento" style="width:80px;margin-bottom:18px;" />
+      <h2 style="font-family:Montserrat,sans-serif;font-size:2rem;color:#2c3e50;margin-bottom:12px;">Participe do Evento Especial!</h2>
+      <p style="color:#34495e;font-size:1.1rem;margin-bottom:24px;">Garanta sua vaga na fila de espera para um evento transformador. Deixe seu e-mail e seja avisado em primeira mão!</p>
+      <form id="popupEventoForm" style="display:flex;flex-direction:column;gap:12px;margin-bottom:18px;">
+        <input type="email" id="popupEmailInput" placeholder="Seu e-mail" required style="padding:12px;border-radius:6px;border:1px solid #b2bec3;font-size:1rem;" />
+        <button type="submit" style="padding:12px;border-radius:6px;border:none;background:#2980b9;color:#fff;font-size:1rem;font-weight:700;cursor:pointer;transition:background 0.2s;">Entrar na fila de espera</button>
+      </form>
+      <p style="font-size:0.95rem;color:#636e72;">Data do evento será divulgada em breve.</p>
+      <p id="popupConfirmacaoMsg" style="display:none;color:#27ae60;font-weight:700;margin-top:18px;">Inscrição confirmada! Você está na fila de espera.</p>
+    </div>
+  </div>
+  <script>
+    // Exibe o popup do evento ao clicar em 'Início'
+    var inicioLinks = document.querySelectorAll('a[href="#inicio"]');
+    inicioLinks.forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('evento-popup').style.display = 'flex';
+      });
+    });
+  // Exibe o popup do evento imediatamente ao carregar
+  document.getElementById('evento-popup').style.display = 'flex';
+
+  // Garante que o popup pode ser reaberto ao clicar em 'Início'
+  inicioLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('evento-popup').style.display = 'flex';
+    });
+  });
+    document.getElementById('fechar-popup').onclick = function() {
+      document.getElementById('evento-popup').style.display = 'none';
+    };
+    document.getElementById('popupEventoForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = document.getElementById('popupEmailInput').value;
+      if(email) {
+        fetch('http://localhost:3001/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ nome: '', email, mensagem: 'Fila de espera evento' })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.ok) {
+            document.getElementById('popupConfirmacaoMsg').style.display = 'block';
+          } else {
+            alert('Erro ao enviar e-mail. Tente novamente.');
+          }
+        })
+        .catch(() => {
+          alert('Erro ao enviar e-mail. Tente novamente.');
+        });
+        document.getElementById('popupEventoForm').reset();
+      }
+    });
+  </script>
+  <div class="logo-topo logo-bg-preto logo-frase-row">
+  <div style="width:100%;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;">
+    <img src="assets/img/institutowicartest.png" alt="Logo Instituto WICAR Test" class="logo logo-grande" style="height:70px;margin-right:2rem;" />
+    <span class="logo-frase">Instituto Willian Carvalho — Onde negócios crescem e líderes se transformam.</span>
+  </div>
+  </div>
+  <!-- HEADER -->
+<header class="header-white">
+  <nav class="nav-main nav-left">
+    <div class="nav-menu-group">
+      <ul class="main-menu">
+  <li style="display:flex;align-items:center;gap:8px;">
+  <img src="assets/img/institutowicartest.png" alt="Miniatura Logo" style="height:44px;width:auto;vertical-align:middle;" />
+    <a href="#inicio">Início</a>
+  </li>
+  <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#mentorias">Mentorias</a></li>
+        <li><a href="#empresas">Empresas</a></li>
+        <li><a href="#depoimentos">Depoimentos</a></li>
+        <li><a href="#conteudos">Conteúdos</a></li>
+        <li><a href="#contato" class="menu-contato">Contato</a></li>
+      </ul>
+      
+    </div>
+    <span class="menu-toggle">☰</span>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="inicio" class="hero-section">
+  <div class="hero-content">
+    <div class="hero-text-block">
+      <h1 class="hero-title">Transformando negócios e líderes<br>com estratégia e resultado</h1>
+      <p class="hero-sub">De Dono para Dono: a virada que seu negócio precisa para crescer de verdade.</p>
+      <div class="hero-cta-group">
+        <a href="#contato" class="btn btn-hero">Quero Transformar Meu Negócio</a>
+        <a href="#mentorias" class="btn btn-outline">Conheça as Mentorias</a>
+      </div>
+    </div>
+    <div class="hero-media-block">
+      <video src="assets/img/video-impacto.mp4" poster="assets/img/banner-will-fundo-preto.jpg" autoplay loop muted playsinline class="hero-video"></video>
+    </div>
+  </div>
+</section>
+
+<!-- PILARES/VALORES -->
+<section id="instituto-pilares" class="section-pilares-white">
+  <h2>Por que escolher o Instituto</h2>
+  <div class="pilares-cards">
+    <div class="pilar-card">
+      <div class="pilar-icon">🏆</div>
+      <h3>Experiência que Gera Resultados</h3>
+      <p>Mais de 24 anos liderando empresas reais, superando desafios e transformando isso em soluções aplicáveis para o seu negócio.</p>
+    </div>
+    <div class="pilar-card">
+      <div class="pilar-icon">🤝</div>
+      <h3>Especialistas ao Seu Lado</h3>
+      <p>Marketing, vendas, finanças, jurídico e gestão integrados para garantir crescimento sólido e estruturado.</p>
+    </div>
+    <div class="pilar-card">
+      <div class="pilar-icon">📈</div>
+      <h3>Resultados que Falam</h3>
+      <p>Estratégias que se traduzem em lucros reais, tempo livre e empresas que funcionam sem a presença constante do dono.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="section-sobre-white">
+  <div class="sobre-content">
+    <div class="sobre-text">
+      <h2>Sobre o Instituto</h2>
+      <p>Não somos uma consultoria. Somos o seu centro estratégico de resultados. Criamos planos práticos, aplicamos junto com você e medimos cada avanço. É como ter um sócio estratégico trabalhando pelo sucesso da sua empresa.</p>
+      <blockquote>Se você busca teoria, não é aqui. Se quer resultados, está no lugar certo.</blockquote>
+      <a href="#mentorias" class="btn btn-outline">Conheça Nossa História</a>
+    </div>
+    <div class="sobre-media">
+      <img src="assets/img/equipe-acao.jpg" alt="Equipe em ação" class="sobre-img" />
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMA DE CRESCIMENTO -->
+<section id="mentorias" class="section-programa">
+  <h2>Programa de Crescimento Guiado</h2>
+  <p>Uma jornada imersiva de 90 dias para escalar seu negócio com clareza e resultado.</p>
+  <div class="cards-programa">
+    <div class="card-programa">Diagnóstico estratégico</div>
+    <div class="card-programa">Mentorias semanais</div>
+    <div class="card-programa">Plano de ação personalizado</div>
+  </div>
+</section>
+
+<!-- IMERSÃO -->
+<section id="imersao" class="section-imersao-white">
+  <div class="imersao-content">
+    <div class="imersao-text">
+      <h2>Imersão “De Dono para Dono”</h2>
+      <p>Uma mudança que começa no dono e transforma toda a empresa.</p>
+      <ul>
+        <li>✔ Aprenda a liderar sem ser refém da operação.</li>
+        <li>✔ Tenha clareza sobre onde investir seu tempo e seu dinheiro.</li>
+        <li>✔ Crie um plano sólido que leve sua empresa a um novo patamar.</li>
+      </ul>
+      <a href="#contato" class="btn btn-imersao">Quero Garantir Minha Vaga</a>
+    </div>
+    <div class="imersao-media">
+      <img src="assets/img/imersao.jpg" alt="Imersão" class="imersao-img" />
+    </div>
+  </div>
+</section>
+
+<!-- EMPRESAS DO FUNDADOR -->
+<section id="empresas" class="section-empresas-white">
+  <h2>Empresas do Fundador</h2>
+  <div class="empresas-grid">
+    <div class="empresa-box">
+      <h3>Hospitalar Serviços de Saúde</h3>
+      <p>Excelência em gestão e operação de serviços médicos e hospitalares.</p>
+    </div>
+    <div class="empresa-box">
+      <h3>Cepe Saúde Ltda</h3>
+      <p>Centro de excelência em saúde, com foco no bem-estar e atendimento humanizado.</p>
+    </div>
+    <div class="empresa-box">
+      <h3>Centro Jurídico de Intermediações e Negócios Ltda</h3>
+      <p>Soluções jurídicas estratégicas para empresas e empreendedores.</p>
+    </div>
+    <div class="empresa-box">
+      <h3>WC Assessoria em Crédito e Cobrança</h3>
+      <p>Recuperação eficiente de crédito e gestão financeira de alto nível.</p>
+    </div>
+    <div class="empresa-box">
+      <h3>IWC Development & Business</h3>
+      <p>Desenvolvimento de negócios e projetos estratégicos de expansão.</p>
+    </div>
+    <div class="empresa-box">
+      <h3>E-Control Sistemas e Serviços</h3>
+      <p>Tecnologia e inovação para gestão inteligente e controle operacional.</p>
+    </div>
+    <div class="empresa-box">
+      <h3>Associação Beneficente de Amparo à Saúde (Presidente)</h3>
+      <p>Impacto social e apoio à saúde comunitária.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos" class="section-depoimentos-white">
+  <h2>Depoimentos</h2>
+  <div class="depoimentos-carousel">
+    <div class="depoimento-card">
+      <p>“Hoje minha empresa funciona sem depender de mim todos os dias — e meu lucro nunca foi tão alto.”</p>
+    </div>
+    <div class="depoimento-card">
+      <p>“Passei de sufocado na operação para líder estratégico. A clareza que eu precisava estava aqui.”</p>
+    </div>
+    <div class="depoimento-card">
+      <p>“A Imersão foi um divisor de águas. Estruturei processos e escalei vendas em pouco tempo.”</p>
+    </div>
+  </div>
+</section>
+
+  
+  
+  <section class="evento-chamada" style="width:100%;display:flex;justify-content:center;margin:48px 0;">
+    <div style="background:#fff;border-radius:16px;box-shadow:0 4px 16px rgba(44,62,80,0.10);padding:32px 24px;max-width:420px;text-align:center;">
+      <img src="assets/img/institutowicartest.png" alt="Logo Evento" style="width:60px;margin-bottom:12px;" />
+      <h2 style="font-family:Montserrat,sans-serif;font-size:1.5rem;color:#2c3e50;margin-bottom:10px;">Evento Especial</h2>
+      <p style="color:#34495e;font-size:1rem;margin-bottom:18px;">Garanta sua vaga na fila de espera para um evento transformador!</p>
+      <a href="landing-evento.html" style="display:inline-block;padding:12px 28px;background:#2980b9;color:#fff;border-radius:6px;font-weight:700;text-decoration:none;font-family:Montserrat,sans-serif;transition:background 0.2s;">Entrar na fila de espera</a>
+    </div>
+  </section>
+
+<!-- CONTATO E CTA FINAL LADO A LADO -->
+<section id="contato" class="contato-cta-row">
+  <div class="contato-cta-flex">
+    <div class="contato-box">
+      <!-- Modal de confirmação -->
+      <div id="contatoModal" style="display:none;position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(44,62,80,0.45);z-index:99999;align-items:center;justify-content:center;">
+        <div style="background:#fff;border-radius:16px;box-shadow:0 4px 16px rgba(44,62,80,0.18);padding:32px 24px;max-width:320px;width:90%;text-align:center;position:relative;">
+          <button id="fecharContatoModal" style="position:absolute;top:12px;right:12px;background:#eee;border:none;border-radius:50%;width:28px;height:28px;font-size:1.1rem;cursor:pointer;">&times;</button>
+          <h3 style="color:#27ae60;margin-bottom:10px;">Mensagem enviada!</h3>
+          <p style="color:#34495e;font-size:1rem;">Sua mensagem foi enviada com sucesso.<br>Em breve entraremos em contato.</p>
+        </div>
+      </div>
+      <h2>Fale Comigo</h2>
+      <form id="contatoForm">
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" id="nome" name="nome" placeholder="Seu nome" required />
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="Seu e-mail" required />
+        </div>
+        <div class="form-group">
+          <label for="mensagem">Mensagem</label>
+          <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem" required></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-contato">Enviar</button>
+        </div>
+        <p id="contatoEmailEnviadoMsg" style="display:none;color:#218c4a;font-weight:700;margin-top:10px;background:rgba(67,233,123,0.12);padding:10px 0;border-radius:8px;font-size:1.1rem;">Email enviado com sucesso!</p>
+      </form>
+    </div>
+    <div class="cta-final-bg">
+      <div class="cta-final-texts">
+        <div class="cta-final-title-wrap">
+          <h2 class="cta-final-title" style="color:#1a237e;font-weight:700;">O próximo passo para transformar seu negócio está ao seu alcance. Cada dia que você adia é um dia a mais preso na operação.</h2>
+        </div>
+        <div class="cta-final-support-wrap">
+          <p class="cta-final-support" style="color:#1558b0;font-weight:700;">Vagas limitadas. Resultados ilimitados.</p>
+        </div>
+      </div>
+      <div class="cta-final-btn-wrap">
+        <a href="https://wa.me/seunumerowhatsapp" target="_blank" class="btn btn-cta-final">Quero Dar o Próximo Passo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer-dark">
+  <div class="footer-content">
+    <div class="footer-address">
+      <strong>Endereço:</strong> Av. Engenheiro Luiz Carlos Berrini, nº 1748, Conjunto 2103, Morumbi – SP, CEP 04571-000<br>
+      <strong>Telefone:</strong> (11) 2424-1604
+    </div>
+    <div class="footer-copy">
+      © 2025 Willian. Todos os direitos reservados.
+    </div>
+    <div class="footer-social">
+      <a href="https://wa.me/seunumerowhatsapp" target="_blank" title="WhatsApp" class="social-icon" aria-label="WhatsApp" style="margin:0 10px; color:#25D366;">
+        <i class="fab fa-whatsapp fa-2x"></i>
+      </a>
+      <a href="https://instagram.com/seuusuario" target="_blank" title="Instagram" class="social-icon" aria-label="Instagram" style="margin:0 10px; color:#E1306C;">
+        <i class="fab fa-instagram fa-2x"></i>
+      </a>
+      <a href="https://linkedin.com/in/seuusuario" target="_blank" title="LinkedIn" class="social-icon" aria-label="LinkedIn" style="margin:0 10px; color:#0A66C2;">
+        <i class="fab fa-linkedin fa-2x"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- BOTÃO FLUTUANTE WHATSAPP -->
+<a href="https://wa.me/seunumerowhatsapp" class="whatsapp-float" target="_blank" title="Fale no WhatsApp" aria-label="Fale no WhatsApp" style="color:#25D366;">
+  <i class="fab fa-whatsapp fa-3x"></i>
+</a>
+
+<script src="js/script.js"></script>
+</body>
+</html>

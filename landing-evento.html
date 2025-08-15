@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Evento Especial — Fila de Espera</title>
+  <link rel="stylesheet" href="css/landing-evento.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <section class="evento-hero">
+    <div class="evento-container">
+      <img src="assets/img/institutowicartest.png" alt="Logo Evento" class="evento-logo">
+      <h1 class="evento-titulo">Participe do Evento Especial!</h1>
+      <p class="evento-descricao">Garanta sua vaga na fila de espera para um evento transformador. Deixe seu e-mail e seja avisado em primeira mão!</p>
+      <form class="evento-form" id="eventoForm">
+        <input type="email" id="emailInput" placeholder="Seu e-mail" required>
+        <button type="submit">Entrar na fila de espera</button>
+      </form>
+      <p class="evento-info">Data do evento será divulgada em breve.</p>
+      <p id="confirmacaoMsg" style="display:none;color:#27ae60;font-weight:700;margin-top:18px;">Inscrição confirmada! Você está na fila de espera.</p>
+    </div>
+  </section>
+  <script>
+    document.getElementById('eventoForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var email = document.getElementById('emailInput').value;
+      if(email) {
+        fetch('http://localhost:3001/send', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ nome: '', email, mensagem: 'Fila de espera evento' })
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.ok) {
+            document.getElementById('confirmacaoMsg').style.display = 'block';
+          } else {
+            alert('Erro ao enviar e-mail. Tente novamente.');
+          }
+        })
+        .catch(() => {
+          alert('Erro ao enviar e-mail. Tente novamente.');
+        });
+        document.getElementById('eventoForm').reset();
+      }
+    });
+  </script>
+</body>
+</html>
