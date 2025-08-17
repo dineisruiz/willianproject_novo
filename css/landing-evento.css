@@ -5,18 +5,20 @@ body {
 }
 
 .evento-hero {
-  min-height: 100vh;
+  min-height: unset;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 48px;
+  padding-bottom: 48px;
 }
 
 .evento-container {
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12);
-  padding: 48px 32px;
-  max-width: 400px;
+  padding: 24px 18px;
+  max-width: 320px;
   width: 100%;
   text-align: center;
 }

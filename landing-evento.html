@@ -11,16 +11,16 @@
 </head>
 <body>
   <section class="evento-hero">
-    <div class="evento-container">
-      <img src="assets/img/institutowicartest.png" alt="Logo Evento" class="evento-logo">
-      <h1 class="evento-titulo">Participe do Evento Especial!</h1>
-      <p class="evento-descricao">Garanta sua vaga na fila de espera para um evento transformador. Deixe seu e-mail e seja avisado em primeira mão!</p>
-      <form class="evento-form" id="eventoForm">
-        <input type="email" id="emailInput" placeholder="Seu e-mail" required>
-        <button type="submit">Entrar na fila de espera</button>
+    <div class="evento-container evento-reduzido">
+      <img src="assets/img/institutowicartest.png" alt="Logo Evento" class="evento-logo" style="max-width:80px; margin-bottom:12px;">
+      <h1 class="evento-titulo" style="font-size:1.3rem; margin-bottom:10px;">Participe do Evento Especial!</h1>
+      <p class="evento-descricao" style="font-size:0.95rem; margin-bottom:10px;">Garanta sua vaga na fila de espera para um evento transformador.<br>Deixe seu e-mail e seja avisado em primeira mão!</p>
+      <form class="evento-form" id="eventoForm" style="display:flex; flex-direction:column; gap:8px; max-width:220px; margin:auto;">
+        <input type="email" id="emailInput" placeholder="Seu e-mail" required style="padding:6px 10px; font-size:0.95rem;">
+        <button type="submit" style="padding:7px 0; font-size:0.95rem;">Entrar na fila de espera</button>
       </form>
-      <p class="evento-info">Data do evento será divulgada em breve.</p>
-      <p id="confirmacaoMsg" style="display:none;color:#27ae60;font-weight:700;margin-top:18px;">Inscrição confirmada! Você está na fila de espera.</p>
+      <p class="evento-info" style="font-size:0.9rem; margin-top:8px;">Data do evento será divulgada em breve.</p>
+      <p id="confirmacaoMsg" style="display:none;color:#27ae60;font-weight:700;margin-top:12px;font-size:0.95rem;">Inscrição confirmada! Você está na fila de espera.</p>
     </div>
   </section>
   <script>
