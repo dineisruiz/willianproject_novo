@@ -18,11 +18,11 @@
 <div style="flex:1;display:flex;flex-direction:column;">
   <!-- Popup Flutuante do Evento -->
   <div id="evento-popup" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(44,62,80,0.45);display:none;align-items:center;justify-content:center;z-index:9999;">
-    <div style="background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(44,62,80,0.18);padding:18px 18px;max-width:400px;width:98%;text-align:center;position:relative;">
+  <div style="background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(44,62,80,0.18);border:3px solid #2980b9;padding:8px 12px;max-width:320px;width:98%;text-align:center;position:relative;">
       <button id="fechar-popup" style="position:absolute;top:16px;right:16px;background:#eee;border:none;border-radius:50%;width:32px;height:32px;font-size:1.3rem;cursor:pointer;">&times;</button>
-      <img src="assets/img/carvalhonovo.png" alt="Logo Evento" style="height:180px;width:auto;margin-bottom:10px;max-width:100%;">
-      <h2 style="font-size:2rem;font-weight:700;margin-bottom:8px;color:#22324a;">Imersão Virada Estratégica</h2>
-      <p style="font-size:1.1rem;margin-bottom:18px;color:#22324a;">Outubro/2025</p>
+  <img src="assets/img/carvalhonovo.png" alt="Logo Evento" style="height:180px;width:auto;margin-bottom:2px;max-width:100%;">
+  <h2 style="font-size:2.3rem;font-weight:800;line-height:1.15;margin-bottom:0.7rem;color:#22324a;font-family:'Montserrat',Arial,sans-serif;text-align:center;">Imersão Virada<br>Estratégica</h2>
+  <p style="font-size:1.15rem;margin-bottom:1.5rem;color:#22324a;font-family:'Montserrat',Arial,sans-serif;text-align:center;">Outubro/2025</p>
       <form id="popupEventoForm" style="display:flex;flex-direction:column;gap:12px;margin-bottom:18px;">
         <div style="display:flex;align-items:center;gap:8px;">
           <label for="popupNomeInput" style="font-size:1rem;color:#34495e;font-weight:600;min-width:70px;">Nome</label>
@@ -36,7 +36,7 @@
           <label for="popupTelefoneInput" style="font-size:1rem;color:#34495e;font-weight:600;min-width:70px;">Telefone</label>
           <input type="text" id="popupTelefoneInput" placeholder="Ex: (11) 99999-9999" required style="padding:12px;border-radius:6px;border:1px solid #b2bec3;font-size:1rem;flex:1;" />
         </div>
-        <button type="submit" style="background:#22324a;color:#fff;font-weight:700;font-size:1.1rem;border:none;border-radius:6px;padding:12px 0;cursor:pointer;">Entrar na fila de espera</button>
+  <button type="submit" class="btn-popup">Entrar na fila de espera</button>
       </form>
       <span id="popupMensagemSucesso" style="display:none;color:#27ae60;font-weight:600;font-size:1.1rem;margin-bottom:10px;">Mensagem enviada com sucesso!</span>
       <p id="popupConfirmacaoMsg" style="display:none;color:#27ae60;font-weight:700;margin-top:18px;">Inscrição confirmada! Você está na fila de espera.</p>
@@ -83,7 +83,7 @@
   <nav class="nav-main nav-left">
     <div class="nav-menu-group" style="display:flex;align-items:center;width:100%;padding-left:0.5cm;">
       <div style="display:flex;align-items:center;min-height:72px;justify-content:flex-start;width:100vw;">
-  <img src="assets/img/carvalhonovo.png" alt="Logo Carvalho" style="height:72px;width:auto;margin-left:0;display:inline-block;" />
+  <img src="assets/img/carvalhonovo.png" alt="Logo Carvalho" style="height:144px;width:auto;max-width:220px;margin-left:0;display:inline-block;" />
         <ul class="main-menu" style="display:flex;align-items:center;gap:20px;justify-content:flex-start;margin-left:0;list-style:none;padding:0;flex-wrap:nowrap;white-space:nowrap;">
           <li><a href="#inicio">Início</a></li>
           <li><a href="sobre.html">Sobre</a></li>
@@ -237,11 +237,11 @@
   
   <section class="evento-chamada" style="width:100%;display:flex;justify-content:center;margin:48px 0;">
     <div style="background:#fff;border-radius:16px;box-shadow:0 4px 16px rgba(44,62,80,0.10);padding:32px 24px;max-width:420px;text-align:center;">
-  <img src="assets/img/carvalhonovo.png" alt="Logo Evento" style="height:70px;width:auto;margin-bottom:12px;" />
+  <img src="assets/img/carvalhonovo.png" alt="Logo Evento" style="height:140px;width:auto;margin-bottom:12px;" />
       <h2 style="font-family:Montserrat,sans-serif;font-size:1.5rem;color:#2c3e50;margin-bottom:10px;">Imersão Virada Estratégica</h2>
       <p style="font-size:1.1rem;color:#22324a;margin-bottom:10px;">Outubro/2025</p>
       <p style="color:#34495e;font-size:1rem;margin-bottom:18px;">Garanta sua vaga na fila de espera para um evento transformador!</p>
-      <a href="landing-evento.html" style="display:inline-block;padding:12px 28px;background:#2980b9;color:#fff;border-radius:6px;font-weight:700;text-decoration:none;font-family:Montserrat,sans-serif;transition:background 0.2s;">Entrar na fila de espera</a>
+  <a href="landing-evento.html" class="btn-popup" style="display:inline-block;padding:12px 28px;text-align:center;">Entrar na fila de espera</a>
     </div>
   </section>
 

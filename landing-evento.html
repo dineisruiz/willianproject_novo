@@ -11,29 +11,42 @@
 </head>
 <body>
   <section class="evento-hero">
-    <div class="evento-container evento-reduzido">
-      <img src="assets/img/institutowicartest.png" alt="Logo Evento" class="evento-logo" style="max-width:80px; margin-bottom:12px;">
-      <h1 class="evento-titulo" style="font-size:1.3rem; margin-bottom:10px;">Participe do Evento Especial!</h1>
-      <p class="evento-descricao" style="font-size:0.95rem; margin-bottom:10px;">Garanta sua vaga na fila de espera para um evento transformador.<br>Deixe seu e-mail e seja avisado em primeira mão!</p>
-      <form class="evento-form" id="eventoForm" style="display:flex; flex-direction:column; gap:8px; max-width:220px; margin:auto;">
-        <input type="email" id="emailInput" placeholder="Seu e-mail" required style="padding:6px 10px; font-size:0.95rem;">
-        <button type="submit" style="padding:7px 0; font-size:0.95rem;">Entrar na fila de espera</button>
+    <div style="background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(44,62,80,0.18);padding:18px 18px;max-width:400px;width:98%;text-align:center;position:relative;margin:auto;">
+  <img src="assets/img/carvalhonovo.png" alt="Logo Evento" style="height:140px;width:auto;margin-bottom:10px;display:block;margin-left:auto;margin-right:auto;">
+  <h2 style="font-size:2rem;font-weight:700;margin-bottom:8px;color:#22324a;text-align:center;margin:0 auto 8px auto;">Imersão Virada Estratégica</h2>
+  <p style="font-size:1.1rem;margin-bottom:18px;color:#22324a;text-align:center;margin:0 auto 18px auto;">Outubro/2025</p>
+  <form id="eventoForm" style="display:flex;flex-direction:column;gap:12px;margin-bottom:18px;align-items:center;text-align:left;width:100%;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <label for="nomeInput" style="font-size:1rem;color:#34495e;font-weight:600;min-width:70px;">Nome</label>
+          <input type="text" id="nomeInput" placeholder="Ex: Willian Carvalho" required style="padding:12px;border-radius:6px;border:1px solid #b2bec3;font-size:1rem;flex:1;" />
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <label for="telefoneInput" style="font-size:1rem;color:#34495e;font-weight:600;min-width:70px;">Telefone</label>
+          <input type="text" id="telefoneInput" placeholder="Ex: (11)98431-2999" required style="padding:12px;border-radius:6px;border:1px solid #b2bec3;font-size:1rem;flex:1;" />
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <label for="emailInput" style="font-size:1rem;color:#34495e;font-weight:600;min-width:70px;">E-mail</label>
+          <input type="email" id="emailInput" placeholder="Ex: willian@carvalho.com" required style="padding:12px;border-radius:6px;border:1px solid #b2bec3;font-size:1rem;flex:1;" />
+        </div>
+  <button type="submit" class="btn-popup">Entrar na fila de espera</button>
       </form>
-      <p class="evento-info" style="font-size:0.9rem; margin-top:8px;">Data do evento será divulgada em breve.</p>
-      <p id="confirmacaoMsg" style="display:none;color:#27ae60;font-weight:700;margin-top:12px;font-size:0.95rem;">Inscrição confirmada! Você está na fila de espera.</p>
+  <p style="font-size:0.95rem;color:#636e72;text-align:left;margin-left:1cm;">Data do evento será divulgada em breve.</p>
+  <p id="confirmacaoMsg" style="display:none;color:#27ae60;font-weight:700;margin-top:18px;text-align:left;margin-left:1cm;">Inscrição confirmada! Você está na fila de espera.</p>
     </div>
   </section>
   <script>
     document.getElementById('eventoForm').addEventListener('submit', function(e) {
       e.preventDefault();
+      var nome = document.getElementById('nomeInput').value;
+      var telefone = document.getElementById('telefoneInput').value;
       var email = document.getElementById('emailInput').value;
-      if(email) {
+      if(nome && telefone && email) {
         fetch('http://localhost:3001/send', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ nome: '', email, mensagem: 'Fila de espera evento' })
+          body: JSON.stringify({ nome, telefone, email, mensagem: 'Fila de espera evento' })
         })
         .then(res => res.json())
         .then(data => {

@@ -1,3 +1,24 @@
+/* Botão igual ao popup principal */
+.btn-popup {
+  background: linear-gradient(90deg,#22324a,#0059B3);
+  color: #fff;
+  font-weight: 700;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: none;
+  padding: 12px 0;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  width: 100%;
+  min-width: 180px;
+  margin: 16px auto 0 auto;
+  display: block;
+}
+.btn-popup:hover {
+  background: linear-gradient(90deg,#0059B3,#22324a);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
 body {
   margin: 0;
   font-family: 'Montserrat', Arial, sans-serif;
@@ -16,36 +37,40 @@ body {
 .evento-container {
   background: #fff;
   border-radius: 18px;
-  box-shadow: 0 8px 32px rgba(44, 62, 80, 0.12);
-  padding: 24px 18px;
-  max-width: 320px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 2.5rem 2vw 2.5rem 2vw;
+  max-width: 380px;
   width: 100%;
   text-align: center;
 }
 
 .evento-logo {
-  width: 80px;
-  margin-bottom: 18px;
+  width: 140px;
+  margin-bottom: 22px;
 }
 
 .evento-titulo {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: #2c3e50;
+  font-size: 2.1rem;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #263248;
 }
 
 .evento-descricao {
-  font-size: 1.1rem;
-  margin-bottom: 24px;
+  font-size: 1.15rem;
+  margin-bottom: 10px;
   color: #34495e;
 }
 
 .evento-form {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 18px;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 8px;
 }
 
 .evento-form input[type="email"] {
@@ -56,15 +81,16 @@ body {
 }
 
 .evento-form button {
-  padding: 12px;
+  padding: 12px 0;
   border-radius: 6px;
   border: none;
   background: #2980b9;
   color: #fff;
-  font-size: 1rem;
+  font-size: 1.08rem;
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s;
+  width: 100%;
 }
 
 .evento-form button:hover {
@@ -72,6 +98,7 @@ body {
 }
 
 .evento-info {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #636e72;
+  text-align: center;
 }

@@ -13,22 +13,22 @@ app.post('/send', async (req, res) => {
     let transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'dineisruiz@gmail.com',
+        user: 'contato@williancarvalho.com.br',
         pass: 'weppxldvfrqugrqe',
       },
     });
     await transporter.sendMail({
       from: email,
-      to: 'dineisruiz@gmail.com',
+      to: 'contato@williancarvalho.com.br',
       subject: 'Contato do site',
       text: `Nome: ${nome}\nEmail: ${email}\nMensagem: ${mensagem}`,
     });
     // E-mail de agradecimento para o usuário
     await transporter.sendMail({
-      from: 'dineisruiz@gmail.com',
-      to: email,
-      subject: 'Obrigado por entrar na lista de espera',
-      text: 'Obrigado por entrar na lista de espera! Em breve você será avisado sobre o evento.'
+      from: 'contato@williancarvalho.com.br',
+      to: 'contato@williancarvalho.com.br',
+      subject: 'Nova inscrição na lista de espera',
+      text: `Nome: ${nome}\nEmail: ${email}\nMensagem: ${mensagem}`
     });
     res.json({ ok: true });
   } catch (err) {
