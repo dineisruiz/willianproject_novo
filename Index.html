@@ -1,3 +1,4 @@
+<!-- Página principal do site Willian. Estrutura geral, menu, popups, cards, rodapé. -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,12 +12,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body style="margin:0;padding:0;display:flex;flex-direction:column;min-height:100vh;">
-<!-- BOTÃO FLUTUANTE WHATSAPP -->
+<!-- BOTÃO FLUTUANTE WHATSAPP: Edite o link e ícone do WhatsApp aqui. -->
 <a href="https://wa.me/551151995022" class="whatsapp-float" target="_blank" title="Fale no WhatsApp" aria-label="Fale no WhatsApp" style="color:#25D366;">
   <i class="fab fa-whatsapp fa-3x"></i>
 </a>
 <div style="flex:1;display:flex;flex-direction:column;">
-  <!-- Popup Flutuante do Evento -->
+  <!-- Popup Flutuante do Evento: Edite conteúdo, botões e estilos do popup aqui. -->
   <div id="evento-popup" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(44,62,80,0.45);display:none;align-items:center;justify-content:center;z-index:9999;">
   <div style="background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(44,62,80,0.18);border:3px solid #2980b9;padding:8px 12px;max-width:320px;width:98%;text-align:center;position:relative;">
       <button id="fechar-popup" style="position:absolute;top:16px;right:16px;background:#eee;border:none;border-radius:50%;width:32px;height:32px;font-size:1.3rem;cursor:pointer;">&times;</button>
@@ -43,6 +44,7 @@
     </div>
   </div>
   <script>
+    // JS do popup do evento. Edite lógica de exibição e envio do formulário aqui.
     // Exibe o popup do evento ao clicar em 'Início'
     var inicioLinks = document.querySelectorAll('a[href="#inicio"]');
     inicioLinks.forEach(function(link) {
@@ -78,7 +80,7 @@
       }
     });
   </script>
-  <!-- HEADER -->
+  <!-- HEADER: Menu principal. Edite logo, links e navegação aqui. -->
 <header class="header-white">
   <nav class="nav-main nav-left">
     <div class="nav-menu-group" style="display:flex;align-items:center;width:100%;padding-left:0.5cm;">
@@ -109,7 +111,7 @@
   </nav>
 </header>
 
-<!-- HERO -->
+<!-- HERO: Vídeo de destaque. Edite vídeo, imagem e textos principais aqui. -->
 <section id="inicio" class="hero-section">
   <div style="position:relative;width:100vw;min-height:60vh;display:flex;align-items:center;justify-content:center;background:#111;overflow:hidden;">
     <video src="assets/videos/videoprincipal.mp4" poster="assets/img/banner-will-fundo-preto.jpg" autoplay loop muted playsinline controls
@@ -119,7 +121,7 @@
   </div>
 </section>
 
-<!-- PILARES/VALORES -->
+<!-- PILARES/VALORES: Cards de pilares do instituto. Edite ícones, títulos e textos aqui. -->
 <section id="instituto-pilares" class="section-pilares-white">
   <h2>Por que escolher o Instituto</h2>
   <div class="pilares-cards">
@@ -142,7 +144,7 @@
 </section>
 
 
-<!-- PROGRAMA DE CRESCIMENTO -->
+<!-- PROGRAMA DE CRESCIMENTO: Cards dos programas. Edite títulos, textos e botões dos programas aqui. -->
 <section id="mentorias" class="section-programa">
   <h2 style="text-align:left;margin:0 0 2.5rem 0;width:100%;">Programas de Crescimento</h2>
   <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
@@ -182,7 +184,7 @@
   </div>
 </section>
 
-<!-- EMPRESAS DO FUNDADOR -->
+<!-- EMPRESAS DO FUNDADOR: Lista de empresas. Edite nomes e descrições das empresas aqui. -->
 <section id="empresas" class="section-empresas-white">
   <h2>Empresas do Fundador</h2>
   <div class="empresas-grid">
@@ -217,7 +219,7 @@
   </div>
 </section>
 
-<!-- DEPOIMENTOS -->
+<!-- DEPOIMENTOS: Cards de depoimentos. Edite textos dos depoimentos aqui. -->
 <section id="depoimentos" class="section-depoimentos-white">
   <h2>Depoimentos</h2>
   <div class="depoimentos-carousel">
@@ -235,6 +237,7 @@
 
   
   
+  <!-- CHAMADA DO EVENTO: Card de chamada para fila de espera. Edite imagem, textos e botão aqui. -->
   <section class="evento-chamada" style="width:100%;display:flex;justify-content:center;margin:48px 0;">
     <div style="background:#fff;border-radius:16px;box-shadow:0 4px 16px rgba(44,62,80,0.10);padding:32px 24px;max-width:420px;text-align:center;">
   <img src="assets/img/carvalhonovo.png" alt="Logo Evento" style="height:140px;width:auto;margin-bottom:12px;" />
@@ -245,7 +248,7 @@
     </div>
   </section>
 
-<!-- CONTATO E CTA FINAL LADO A LADO -->
+<!-- CONTATO E CTA FINAL LADO A LADO: Formulário de contato e chamada final. Edite campos, textos e botões aqui. -->
 <section id="contato" class="contato-cta-row">
   <div class="contato-cta-flex">
     <div class="contato-box">
@@ -293,7 +296,7 @@
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER: Rodapé do site. Edite endereço, redes sociais e copyright aqui. -->
 <footer class="footer-dark" style="margin-top:auto;">
   <div class="footer-content">
     <div class="footer-address">

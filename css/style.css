@@ -15,13 +15,13 @@
   background: linear-gradient(90deg,#0059B3,#22324a);
   box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
-/* Alinhamento do título dos programas */
+/* Alinhamento do título dos programas: Edite alinhamento e margens do título dos programas aqui. */
 .section-programa > h2 {
   text-align: left;
   margin-left: 32px;
   margin-bottom: 2.5rem;
 }
-/* Corrige altura dos cards e dos botões */
+/* Corrige altura dos cards e dos botões: Edite altura, padding e layout dos cards dos programas aqui. */
 .section-programa .pilar-card {
   display: flex;
   flex-direction: column;
@@ -90,7 +90,7 @@
   max-width: 420px;
   display: block;
 }
-/* Padronização visual de todos os botões do sistema */
+/* Padronização visual de todos os botões do sistema: Edite estilos globais dos botões aqui. */
 .btn, .btn-header, .btn-hero, .btn-outline, .btn-cta-final, .btn-imersao, .btn-contato {
   border-radius: 12px;
   font-weight: 700;
@@ -114,7 +114,7 @@
   background: linear-gradient(90deg,#0059B3,#00264D);
   box-shadow: 0 4px 16px rgba(0,0,0,0.12);
 }
-/* Espaçamento individual dos botões das caixas de programas */
+/* Espaçamento individual dos botões das caixas de programas: Edite margens e espaçamento dos botões dos programas aqui. */
  :root {
    --azul-vivo: #2980b9;
  }
@@ -136,6 +136,7 @@
   margin-top: 4rem; /* Altere este valor para ajustar a altura */
   margin-bottom: 0;
 }
+/* Responsividade para telas pequenas: Edite estilos para mobile aqui. */
 @media (max-width: 600px) {
   .logo-topo .logo {
     height: 56px !important;
