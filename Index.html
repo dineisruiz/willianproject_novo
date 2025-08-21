@@ -5,23 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Font Awesome CDN para ícones de redes sociais -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-  <title>Willian | Estratégia & Crescimento</title>
+  <title>IWC development & Business</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="margin:0;padding:0;display:flex;flex-direction:column;min-height:100vh;">
+<!-- BOTÃO FLUTUANTE WHATSAPP -->
+<a href="https://wa.me/551151995022" class="whatsapp-float" target="_blank" title="Fale no WhatsApp" aria-label="Fale no WhatsApp" style="color:#25D366;">
+  <i class="fab fa-whatsapp fa-3x"></i>
+</a>
+<div style="flex:1;display:flex;flex-direction:column;">
   <!-- Popup Flutuante do Evento -->
   <div id="evento-popup" style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(44,62,80,0.45);display:none;align-items:center;justify-content:center;z-index:9999;">
-    <div style="background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(44,62,80,0.18);padding:40px 32px;max-width:400px;width:90%;text-align:center;position:relative;">
+    <div style="background:#fff;border-radius:18px;box-shadow:0 8px 32px rgba(44,62,80,0.18);padding:18px 18px;max-width:400px;width:98%;text-align:center;position:relative;">
       <button id="fechar-popup" style="position:absolute;top:16px;right:16px;background:#eee;border:none;border-radius:50%;width:32px;height:32px;font-size:1.3rem;cursor:pointer;">&times;</button>
-      <img src="assets/img/institutowicartest.png" alt="Logo Evento" style="width:80px;margin-bottom:18px;" />
-      <h2 style="font-family:Montserrat,sans-serif;font-size:2rem;color:#2c3e50;margin-bottom:12px;">Participe do Evento Especial!</h2>
-      <p style="color:#34495e;font-size:1.1rem;margin-bottom:24px;">Garanta sua vaga na fila de espera para um evento transformador. Deixe seu e-mail e seja avisado em primeira mão!</p>
+      <img src="assets/img/carvalhonovo.png" alt="Logo Evento" style="height:180px;width:auto;margin-bottom:10px;max-width:100%;">
+      <h2 style="font-size:2rem;font-weight:700;margin-bottom:8px;color:#22324a;">Imersão Virada Estratégica</h2>
+      <p style="font-size:1.1rem;margin-bottom:18px;color:#22324a;">Outubro/2025</p>
       <form id="popupEventoForm" style="display:flex;flex-direction:column;gap:12px;margin-bottom:18px;">
-        <input type="email" id="popupEmailInput" placeholder="Seu e-mail" required style="padding:12px;border-radius:6px;border:1px solid #b2bec3;font-size:1rem;" />
-        <button type="submit" style="padding:12px;border-radius:6px;border:none;background:#2980b9;color:#fff;font-size:1rem;font-weight:700;cursor:pointer;transition:background 0.2s;">Entrar na fila de espera</button>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <label for="popupNomeInput" style="font-size:1rem;color:#34495e;font-weight:600;min-width:70px;">Nome</label>
+          <input type="text" id="popupNomeInput" placeholder="Ex: Willian Carvalho" required style="padding:12px;border-radius:6px;border:1px solid #b2bec3;font-size:1rem;flex:1;" />
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <label for="popupEmailInput" style="font-size:1rem;color:#34495e;font-weight:600;min-width:70px;">Email</label>
+          <input type="email" id="popupEmailInput" placeholder="Ex: seuemail@dominio.com" required style="padding:12px;border-radius:6px;border:1px solid #b2bec3;font-size:1rem;flex:1;" />
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <label for="popupTelefoneInput" style="font-size:1rem;color:#34495e;font-weight:600;min-width:70px;">Telefone</label>
+          <input type="text" id="popupTelefoneInput" placeholder="Ex: (11) 99999-9999" required style="padding:12px;border-radius:6px;border:1px solid #b2bec3;font-size:1rem;flex:1;" />
+        </div>
+        <button type="submit" style="background:#22324a;color:#fff;font-weight:700;font-size:1.1rem;border:none;border-radius:6px;padding:12px 0;cursor:pointer;">Entrar na fila de espera</button>
       </form>
-      <p style="font-size:0.95rem;color:#636e72;">Data do evento será divulgada em breve.</p>
+      <span id="popupMensagemSucesso" style="display:none;color:#27ae60;font-weight:600;font-size:1.1rem;margin-bottom:10px;">Mensagem enviada com sucesso!</span>
       <p id="popupConfirmacaoMsg" style="display:none;color:#27ae60;font-weight:700;margin-top:18px;">Inscrição confirmada! Você está na fila de espera.</p>
     </div>
   </div>
@@ -49,54 +66,44 @@
     };
     document.getElementById('popupEventoForm').addEventListener('submit', function(e) {
       e.preventDefault();
+      var nome = document.getElementById('popupNomeInput').value;
+      var telefone = document.getElementById('popupTelefoneInput').value;
       var email = document.getElementById('popupEmailInput').value;
-      if(email) {
-        fetch('http://localhost:3001/send', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ nome: '', email, mensagem: 'Fila de espera evento' })
-        })
-        .then(res => res.json())
-        .then(data => {
-          if (data.ok) {
-            document.getElementById('popupConfirmacaoMsg').style.display = 'block';
-          } else {
-            alert('Erro ao enviar e-mail. Tente novamente.');
-          }
-        })
-        .catch(() => {
-          alert('Erro ao enviar e-mail. Tente novamente.');
-        });
+      if(nome && telefone && email) {
+        document.getElementById('popupMensagemSucesso').style.display = 'block';
+        setTimeout(function(){
+          document.getElementById('popupMensagemSucesso').style.display = 'none';
+        }, 3500);
         document.getElementById('popupEventoForm').reset();
       }
     });
   </script>
-  <div class="logo-topo logo-bg-preto logo-frase-row">
-  <div style="width:100%;display:flex;flex-direction:row;align-items:center;justify-content:flex-start;">
-    <img src="assets/img/institutowicartest.png" alt="Logo Instituto WICAR Test" class="logo logo-grande" style="height:70px;margin-right:2rem;" />
-    <span class="logo-frase">Instituto Willian Carvalho — Onde negócios crescem e líderes se transformam.</span>
-  </div>
-  </div>
   <!-- HEADER -->
 <header class="header-white">
   <nav class="nav-main nav-left">
-    <div class="nav-menu-group">
-      <ul class="main-menu">
-  <li style="display:flex;align-items:center;gap:8px;">
-  <img src="assets/img/institutowicartest.png" alt="Miniatura Logo" style="height:44px;width:auto;vertical-align:middle;" />
-    <a href="#inicio">Início</a>
-  </li>
-  <li><a href="#sobre">Sobre</a></li>
+    <div class="nav-menu-group" style="display:flex;align-items:center;width:100%;padding-left:0.5cm;">
+      <div style="display:flex;align-items:center;min-height:72px;justify-content:flex-start;width:100vw;">
+  <img src="assets/img/carvalhonovo.png" alt="Logo Carvalho" style="height:72px;width:auto;margin-left:0;display:inline-block;" />
+        <ul class="main-menu" style="display:flex;align-items:center;gap:20px;justify-content:flex-start;margin-left:0;list-style:none;padding:0;flex-wrap:nowrap;white-space:nowrap;">
+          <li><a href="#inicio">Início</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="#mentorias">Programas</a></li>
+          <li><a href="#empresas">Empresas</a></li>
+          <li><a href="#depoimentos">Depoimentos</a></li>
+          <li><a
+            
+            
+            
+            
+            
+            
+            
+            
+            href="conteudos.html">Conteúdos</a></li>
+          <li><a href="#contato" class="menu-contato">Contato</a></li>
+        </ul>
 
-        <li><a href="#mentorias">Mentorias</a></li>
-        <li><a href="#empresas">Empresas</a></li>
-        <li><a href="#depoimentos">Depoimentos</a></li>
-        <li><a href="#conteudos">Conteúdos</a></li>
-        <li><a href="#contato" class="menu-contato">Contato</a></li>
-      </ul>
-      
+      </div>
     </div>
     <span class="menu-toggle">☰</span>
   </nav>
@@ -104,20 +111,11 @@
 
 <!-- HERO -->
 <section id="inicio" class="hero-section">
-  <div class="hero-content" style="display:flex;flex-direction:row;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap;">
-    <div class="hero-text-block" style="flex:1;min-width:280px;max-width:480px;">
-      <h1 class="hero-title" style="font-size:2.4rem;font-weight:700;color:#2c3e50;text-align:left;margin-bottom:18px;">Transformando negócios e líderes<br>com estratégia e resultado</h1>
-      <p class="hero-sub" style="font-size:1.25rem;color:#34495e;text-align:left;margin-bottom:32px;">De Dono para Dono: a virada que seu negócio precisa para crescer de verdade.</p>
-      <div class="hero-cta-group" style="display:flex;gap:18px;flex-wrap:wrap;justify-content:flex-start;">
-  <a href="#contato" class="btn btn-hero" style="margin-bottom:0;padding:12px 24px;font-size:1rem;">Quero Transformar Meu Negócio</a>
-  <a href="#mentorias" class="btn btn-outline" style="margin-bottom:0;padding:12px 18px;font-size:0.98rem;min-width:170px;">Conheça as Mentorias</a>
-      </div>
-    </div>
-    <div class="hero-video-block" style="flex:1;min-width:320px;max-width:640px;display:flex;justify-content:center;">
-      <video src="assets/videos/videoprincipal.mp4" poster="assets/img/banner-will-fundo-preto.jpg" autoplay loop muted playsinline controls
-        style="width:100%;max-width:480px;height:270px;border-radius:18px;box-shadow:0 8px 32px rgba(44,62,80,0.18);background:#fff;object-fit:cover;">
-      </video>
-    </div>
+  <div style="position:relative;width:100vw;min-height:60vh;display:flex;align-items:center;justify-content:center;background:#111;overflow:hidden;">
+    <video src="assets/videos/videoprincipal.mp4" poster="assets/img/banner-will-fundo-preto.jpg" autoplay loop muted playsinline controls
+      style="width:100vw;height:calc(100vw * 9 / 16);max-height:90vh;object-fit:cover;display:block;">
+    </video>
+    <div style="position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);"></div>
   </div>
 </section>
 
@@ -143,51 +141,43 @@
   </div>
 </section>
 
-<!-- SOBRE -->
-<section id="sobre" class="section-sobre-white">
-  <div class="sobre-content">
-    <div class="sobre-text">
-      <h2>Sobre o Instituto</h2>
-      <p>Não somos uma consultoria. Somos o seu centro estratégico de resultados. Criamos planos práticos, aplicamos junto com você e medimos cada avanço. É como ter um sócio estratégico trabalhando pelo sucesso da sua empresa.</p>
-      <blockquote>Se você busca teoria, não é aqui. Se quer resultados, está no lugar certo.</blockquote>
-    </div>
-    <div class="sobre-media">
-      <div style="margin-top:24px;max-width:600px;width:100%;box-shadow:0 4px 24px rgba(44,62,80,0.10);border-radius:16px;overflow:hidden;background:#fff;padding:16px;display:flex;flex-direction:column;align-items:center;">
-        <video controls style="width:320px;height:570px;border-radius:12px;box-shadow:0 2px 12px rgba(44,62,80,0.08);margin-bottom:12px;object-fit:cover;background:#000;" poster="assets/img/institutowicartest.png">
-          <source src="assets/videos/lv_0_20250815220656.mp4" type="video/mp4">
-          Seu navegador não suporta vídeo HTML5.
-        </video>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- PROGRAMA DE CRESCIMENTO -->
 <section id="mentorias" class="section-programa">
-  <h2>Programa de Crescimento Guiado</h2>
-  <p>Uma jornada imersiva de 90 dias para escalar seu negócio com clareza e resultado.</p>
-  <div class="cards-programa">
-    <div class="card-programa">Diagnóstico estratégico</div>
-    <div class="card-programa">Mentorias semanais</div>
-    <div class="card-programa">Plano de ação personalizado</div>
-  </div>
-</section>
-
-<!-- IMERSÃO -->
-<section id="imersao" class="section-imersao-white">
-  <div class="imersao-content">
-    <div class="imersao-text">
-      <h2>Imersão “De Dono para Dono”</h2>
-      <p>Uma mudança que começa no dono e transforma toda a empresa.</p>
-      <ul>
+  <h2 style="text-align:left;margin:0 0 2.5rem 0;width:100%;">Programas de Crescimento</h2>
+  <div style="display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;">
+    <div class="pilar-card" style="max-width:420px;">
+  <h2 style="color:#fff;margin-bottom:0.5rem;text-align:center!important;width:100%;">Programa de Crescimento Guiado</h2>
+  <p style="color:#fff;">Uma jornada imersiva de 90 dias para escalar seu negócio com clareza e resultado.</p>
+  <ul style="color:#fff;text-align:left;margin:1rem 0 1.5rem 0;padding-left:1.2rem;list-style:none;">
+    <li>✔ Diagnóstico estratégico</li>
+    <li>✔ Mentorias semanais</li>
+    <li>✔ Plano de ação personalizado</li>
+  </ul>
+  <a href="#contato" class="btn btn-imersao" style="display:block;width:100%;padding:14px 0;background: green; color: #fff;font-weight:700;border-radius:8px;font-size:1.1rem;margin:4rem 0 0 0;text-decoration:none;transition:background 0.2s;">Quero Saber Mais</a>
+    </div>
+    <div class="pilar-card" style="max-width:420px;">
+  <h2 style="color:#fff;margin-bottom:0.5rem;text-align:center!important;width:100%;">Imersão Virada Estratégica</h2><br>
+      <p style="color:#fff;">Uma mudança que começa no dono e transforma toda a empresa.<br></p>
+      <ul style="color:#fff;text-align:left;margin:1rem 0 1.5rem 0;padding-left:1.2rem;list-style:none;">
         <li>✔ Aprenda a liderar sem ser refém da operação.</li>
         <li>✔ Tenha clareza sobre onde investir seu tempo e seu dinheiro.</li>
         <li>✔ Crie um plano sólido que leve sua empresa a um novo patamar.</li>
       </ul>
-      <a href="#contato" class="btn btn-imersao">Quero Garantir Minha Vaga</a>
+  <a href="#contato" class="btn btn-imersao" style="display:block;width:100%;padding:14px 0;background: orange; color: #fff;font-weight:700;border-radius:8px;font-size:1.1rem;margin:4rem 0 0 0;text-decoration:none;transition:background 0.2s;">Quero Garantir Minha Vaga</a>
+  <div class="imersao-media" style="margin-top:1.5rem;">
+        
+      </div>
     </div>
-    <div class="imersao-media">
-      <img src="assets/img/imersao.jpg" alt="Imersão" class="imersao-img" />
+    <div class="pilar-card" style="max-width:420px;">
+      <h2 style="color:#fff;margin-bottom:0.5rem;text-align:left;">Mentorias</h2>
+      <p style="color:#fff;">Acompanhamento individual ou em grupo para acelerar resultados, superar desafios e desenvolver liderança empresarial.</p>
+      <ul style="color:#fff;text-align:left;margin:1rem 0 1.5rem 0;padding-left:1.2rem;list-style:none;">
+        <li>✔ Sessões personalizadas</li>
+        <li>✔ Foco em resultados práticos</li>
+        <li>✔ Desenvolvimento de competências</li>
+      </ul>
+  <a href="#contato" class="btn btn-imersao" style="display:block;width:100%;padding:14px 0;background: green; color: #fff;font-weight:700;border-radius:8px;font-size:1.1rem;margin:4rem 0 0 0;text-decoration:none;transition:background 0.2s;">Quero Saber Mais</a>
     </div>
   </div>
 </section>
@@ -247,8 +237,9 @@
   
   <section class="evento-chamada" style="width:100%;display:flex;justify-content:center;margin:48px 0;">
     <div style="background:#fff;border-radius:16px;box-shadow:0 4px 16px rgba(44,62,80,0.10);padding:32px 24px;max-width:420px;text-align:center;">
-      <img src="assets/img/institutowicartest.png" alt="Logo Evento" style="width:60px;margin-bottom:12px;" />
-      <h2 style="font-family:Montserrat,sans-serif;font-size:1.5rem;color:#2c3e50;margin-bottom:10px;">Evento Especial</h2>
+  <img src="assets/img/carvalhonovo.png" alt="Logo Evento" style="height:70px;width:auto;margin-bottom:12px;" />
+      <h2 style="font-family:Montserrat,sans-serif;font-size:1.5rem;color:#2c3e50;margin-bottom:10px;">Imersão Virada Estratégica</h2>
+      <p style="font-size:1.1rem;color:#22324a;margin-bottom:10px;">Outubro/2025</p>
       <p style="color:#34495e;font-size:1rem;margin-bottom:18px;">Garanta sua vaga na fila de espera para um evento transformador!</p>
       <a href="landing-evento.html" style="display:inline-block;padding:12px 28px;background:#2980b9;color:#fff;border-radius:6px;font-weight:700;text-decoration:none;font-family:Montserrat,sans-serif;transition:background 0.2s;">Entrar na fila de espera</a>
     </div>
@@ -266,7 +257,7 @@
           <p style="color:#34495e;font-size:1rem;">Sua mensagem foi enviada com sucesso.<br>Em breve entraremos em contato.</p>
         </div>
       </div>
-      <h2>Fale Comigo</h2>
+  <h2 style="color:#003366;">Fale Comigo</h2>
       <form id="contatoForm">
         <div class="form-group">
           <label for="nome">Nome</label>
@@ -281,7 +272,7 @@
           <textarea id="mensagem" name="mensagem" placeholder="Sua mensagem" required></textarea>
         </div>
         <div class="form-group">
-          <button type="submit" class="btn btn-contato">Enviar</button>
+  <button type="submit" class="btn btn-contato" style="background: linear-gradient(90deg,#00264D,#0059B3); color: #fff; font-weight: bold; font-size: 1.2rem; border-radius: 8px; padding: 1rem 2.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">Enviar</button>
         </div>
         <p id="contatoEmailEnviadoMsg" style="display:none;color:#218c4a;font-weight:700;margin-top:10px;background:rgba(67,233,123,0.12);padding:10px 0;border-radius:8px;font-size:1.1rem;">Email enviado com sucesso!</p>
       </form>
@@ -296,41 +287,46 @@
         </div>
       </div>
       <div class="cta-final-btn-wrap">
-        <a href="https://wa.me/seunumerowhatsapp" target="_blank" class="btn btn-cta-final">Quero Dar o Próximo Passo</a>
+  <a href="https://wa.me/551151995022" target="_blank" class="btn btn-cta-final" style="background: linear-gradient(90deg,#00264D,#0059B3); color: #fff; font-weight: bold; font-size: 1.2rem; border-radius: 8px; padding: 1rem 2.2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">Quero Dar o Próximo Passo</a>
       </div>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="footer-dark">
+<footer class="footer-dark" style="margin-top:auto;">
   <div class="footer-content">
     <div class="footer-address">
-      <strong>Endereço:</strong> Av. Engenheiro Luiz Carlos Berrini, nº 1748, Conjunto 2103, Morumbi – SP, CEP 04571-000<br>
-      <strong>Telefone:</strong> (11) 2424-1604
+  <strong>Endereço:</strong> Av. Engenheiro Luiz Carlos Berrini, nº 1748, Conjunto 2103, Morumbi – SP<br>
+  CEP 04571-000<br>
+  <strong>Telefone:</strong> (11) 2424-1604
     </div>
     <div class="footer-copy">
       © 2025 Willian. Todos os direitos reservados.
     </div>
     <div class="footer-social">
-      <a href="https://wa.me/seunumerowhatsapp" target="_blank" title="WhatsApp" class="social-icon" aria-label="WhatsApp" style="margin:0 10px; color:#25D366;">
+      <a href="https://wa.me/551151995022" target="_blank" title="WhatsApp" class="social-icon" aria-label="WhatsApp" style="margin:0 10px; color:#25D366;">
         <i class="fab fa-whatsapp fa-2x"></i>
       </a>
-      <a href="https://instagram.com/seuusuario" target="_blank" title="Instagram" class="social-icon" aria-label="Instagram" style="margin:0 10px; color:#E1306C;">
+      <a href="https://www.instagram.com/institutowilliancarvalho?igsh=bmF5YWw3MGZnYXB0&utm_source=ig_contact_invite" target="_blank" title="Instagram" class="social-icon" aria-label="Instagram" style="margin:0 10px; color:#E1306C;">
         <i class="fab fa-instagram fa-2x"></i>
       </a>
-      <a href="https://linkedin.com/in/seuusuario" target="_blank" title="LinkedIn" class="social-icon" aria-label="LinkedIn" style="margin:0 10px; color:#0A66C2;">
+      <a href="https://www.youtube.com/@InstitutoWillianCarvalho" target="_blank" title="YouTube" class="social-icon" aria-label="YouTube" style="margin:0 10px; color:#FF0000;">
+        <i class="fab fa-youtube fa-2x"></i>
+      </a>
+      <a href="https://www.facebook.com/share/14KFwthZaub/" target="_blank" title="Facebook" class="social-icon" aria-label="Facebook" style="margin:0 10px; color:#1877F3;">
+        <i class="fab fa-facebook fa-2x"></i>
+      </a>
+      <a href="https://www.linkedin.com/in/willian-carvalho-mentoring" target="_blank" title="LinkedIn" class="social-icon" aria-label="LinkedIn" style="margin:0 10px; color:#0077B5;">
         <i class="fab fa-linkedin fa-2x"></i>
       </a>
     </div>
   </div>
 </footer>
 
-<!-- BOTÃO FLUTUANTE WHATSAPP -->
-<a href="https://wa.me/seunumerowhatsapp" class="whatsapp-float" target="_blank" title="Fale no WhatsApp" aria-label="Fale no WhatsApp" style="color:#25D366;">
-  <i class="fab fa-whatsapp fa-3x"></i>
-</a>
+<!-- ...existing code... -->
 
 <script src="js/script.js"></script>
+
 </body>
 </html>

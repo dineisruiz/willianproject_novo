@@ -1,3 +1,110 @@
+/* Alinhamento do título dos programas */
+.section-programa > h2 {
+  text-align: left;
+  margin-left: 32px;
+  margin-bottom: 2.5rem;
+}
+/* Corrige altura dos cards e dos botões */
+.section-programa .pilar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 520px;
+  padding-bottom: 32px;
+  width: 420px;
+  box-sizing: border-box;
+  position: relative;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.08rem;
+  font-weight: 400;
+  text-align: left;
+}
+.section-programa {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+.section-programa .pilar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 480px;
+  padding-bottom: 32px;
+  width: 420px;
+  box-sizing: border-box;
+}
+.section-programa .btn {
+  margin-top: auto !important;
+  margin-bottom: 0 !important;
+  width: 60%;
+  max-width: 160px;
+  min-height: 38px;
+  font-size: 0.95rem;
+  text-align: center !important;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  display: block;
+  align-self: center;
+  position: relative;
+  left: 0;
+  transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+}
+
+.section-programa .btn:hover {
+  box-shadow: 0 2px 12px rgba(44,62,80,0.18);
+  filter: brightness(1.08);
+  color: #fff !important;
+}
+/* Alinhamento dos botões dos programas */
+.section-programa .pilar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  min-height: 480px;
+  padding-bottom: 32px;
+}
+.section-programa .btn {
+  margin-top: auto !important;
+  width: 80%;
+  max-width: 420px;
+  display: block;
+}
+/* Padronização visual de todos os botões do sistema */
+.btn, .btn-header, .btn-hero, .btn-outline, .btn-cta-final, .btn-imersao, .btn-contato {
+  border-radius: 8px;
+  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  padding: 14px 0;
+  display: block;
+  border: none;
+  transition: background 0.2s;
+}
+/* Espaçamento individual dos botões das caixas de programas */
+ :root {
+   --azul-vivo: #2980b9;
+ }
+.btn-imersao-spacing {
+  margin-top: 4rem;
+}
+.btn-crescimento-spacing {
+  margin-top: 4rem;
+}
+.btn-mentorias-spacing {
+  margin-top: 4rem;
+}
+/* Espaçamento e tamanho dos botões das caixas de programas */
+.btn-programa-spacing {
+  display: block;
+  width: 100%;
+  padding: 14px 0;
+  font-size: 1.1rem;
+  margin-top: 4rem; /* Altere este valor para ajustar a altura */
+  margin-bottom: 0;
+}
 @media (max-width: 600px) {
   .logo-topo .logo {
     height: 56px !important;
@@ -8,75 +115,81 @@
     max-width: 90vw;
     text-align: center;
   }
-  .logo-frase-row {
-    flex-direction: column;
-    gap: 0.5rem;
-    align-items: center;
-    padding-left: 0;
-    padding-right: 0;
+  /* Rodapé */
+  .footer-dark {
+    background: #181b1f;
+    color: #fff;
+  padding: 32px 0 0 0 !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.05rem;
   }
-}
-/* 🌐 Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Montserrat', 'Inter', Arial, sans-serif;
-  background: var(--branco);
-  color: var(--cinza-texto);
-}
-
-/* Paleta de cores e tipografia */
-:root {
-  --preto: #000;
-  --azul-escuro: #003366;
-  --azul-profundo: #001F33;
-  --azul-vivo: #0059B3;
-  --branco: #FFF;
-  --cinza-texto: #6B7280;
-  --cinza-claro: #F8FAFC;
-  --borda-card: #001F33;
-  --degrade-cta: linear-gradient(90deg,#00264D,#0059B3);
-  --container-width: 1180px;
-}
-
-.container {
-  max-width: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* --- Hero Section --- */
-.hero-grid {
-  display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  min-height: 70vh;
-  gap: 40px;
-  background: linear-gradient(90deg,rgba(0,0,0,0.7) 70%,rgba(0,0,0,0));
-}
-.hero-text {
-  flex: 1 1 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: var(--branco);
-  z-index: 2;
-}
-.hero-text h1 {
-  font-size: 3.2rem;
-  font-weight: 800;
-  margin-bottom: 1.2rem;
-  color: var(--branco);
-}
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px 24px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .footer-address {
+    flex: 1;
+    min-width: 220px;
+    text-align: left;
+    font-size: 1.05rem;
+    margin-bottom: 0;
+  }
+  /* Corrige altura dos cards e dos botões - UNIFICADO */
+  .section-programa {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  .section-programa .pilar-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    min-height: 480px;
+    padding-bottom: 32px;
+    width: 420px;
+    box-sizing: border-box;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.08rem;
+    font-weight: 400;
+    text-align: left;
+  }
+  .section-programa .btn {
+    margin-top: auto !important;
+    margin-bottom: 0 !important;
+    width: 80%;
+    max-width: 420px;
+    min-height: 38px;
+    font-size: 0.95rem;
+    text-align: center !important;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    display: block;
+    align-self: center;
+    position: relative;
+    left: 0;
+    transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+  }
+  .section-programa .btn:hover {
+    box-shadow: 0 2px 12px rgba(44,62,80,0.18);
+    filter: brightness(1.08);
+    color: #fff !important;
+  }
+/* FIX: Adicionado seletor ausente para propriedades soltas */
 .hero-text h2 {
   font-size: 1.5rem;
   font-weight: 500;
   color: #e5e7eb;
   margin-bottom: 1.5rem;
+}
 }
 .cta-hero {
   background: var(--degrade-cta);
@@ -164,20 +277,23 @@ body {
   height: 100%;
 }
 .main-menu a {
-  color: var(--azul-vivo);
+  color: #0059B3;
   background: none;
   text-decoration: none;
-  transition: color 0.18s, background 0.18s;
-  padding: 0.2rem 0.9rem;
-  border-radius: 6px;
+  font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
+  font-size: 1.15rem;
+  padding: 0.2rem 1.5rem;
+  border-radius: 6px;
   display: flex;
   align-items: center;
   height: 44px;
+  transition: color 0.18s, background 0.18s;
 }
 .main-menu a:hover, .main-menu a.active {
   color: #fff;
-  background: var(--azul-vivo);
+  background: #0059B3;
+  font-weight: bold;
 }
 .btn-header {
   margin-left: 0.8rem;
@@ -210,10 +326,10 @@ body {
 
 /* BOTÃO WHATSAPP FLUTUANTE - fixo à direita, sem sobrepor conteúdo */
 .whatsapp-float {
-  position: fixed;
-  right: 2.2vw;
-  bottom: 2.2vw;
-  z-index: 1200;
+  position: fixed !important;
+  right: 2.2vw !important;
+  bottom: 2.2vw !important;
+  z-index: 9999 !important;
   background: none;
   border-radius: 50%;
   box-shadow: 0 4px 16px rgba(0,0,0,0.18);
@@ -341,6 +457,7 @@ body {
   min-width: 220px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.08);
   text-align: center;
+  color: #fff;
 }
 .pilar-icon {
   font-size: 2.8rem;
@@ -425,6 +542,8 @@ body {
 }
 .sobre-text h2, .section-programa h2, .section-impacto h2, .section-imersao-white h2, .section-empresas-white h2, .section-depoimentos-white h2 {
   margin-bottom: 1.2rem;
+  text-transform: unset;
+  text-align: left !important;
 }
 .sobre-text p, .sobre-text blockquote, .section-programa p, .section-impacto p, .section-imersao-white p, .section-empresas-white p, .section-depoimentos-white p {
   margin-bottom: 1.2rem;
@@ -524,6 +643,7 @@ body {
   gap: 1.5rem;
 }
 .empresa-box {
+  color: #fff;
   background: #0C0F17;
   border: 1.5px solid #1E293B;
   border-radius: 16px;
@@ -1334,8 +1454,8 @@ section, header, footer {
 .logo-bg-preto {
   background: none !important;
   border-radius: 0;
-  padding: 0;
-  width: 100vw;
+    background: #111827;
+    color: #fff;
   display: flex;
   justify-content: flex-start;
   padding-left: 0;
